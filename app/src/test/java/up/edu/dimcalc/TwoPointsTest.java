@@ -5,7 +5,7 @@ import android.graphics.Point;
 import org.junit.Test;
 
 import static junit.framework.Assert.*;
-import static org.junit.Assert.*;
+
 
 public class TwoPointsTest {
 
@@ -40,9 +40,9 @@ public class TwoPointsTest {
         testPoints.randomValue(0);
         Point p1 = testPoints.getPoint(0);
         int i = p1.x;
-//        assertTrue((p1.x >= 10));
-//        assertTrue(i >= -10);
-//        assertTrue(i <= 10);
+
+        boolean valCheck=(i >= -10 && i<=10);
+        assertTrue(valCheck);
     }
 
     @Test
@@ -58,10 +58,10 @@ public class TwoPointsTest {
     public void copy() {
         TwoPoints testPoints = new TwoPoints();
         testPoints.setPoint(0, 5, -3);
-        testPoints.setPoint(1, -3, 5);
+        testPoints.setPoint(1, 1, 2);
+        testPoints.copy(0,1);
         Point p1 = testPoints.getPoint(0);
         Point p2 = testPoints.getPoint(1);
-        testPoints.copy(0,1);
         assertEquals(p2.x,p1.x);
         assertEquals(p2.y,p1.y);
     }
@@ -69,11 +69,21 @@ public class TwoPointsTest {
     @Test
     public void distance() {
         TwoPoints testPoints = new TwoPoints();
+        testPoints.setPoint(0, 0, 0);
+        testPoints.setPoint(1, 2, 2);
+        Point p1 = testPoints.getPoint(0);
+        Point p2 = testPoints.getPoint(1);
+        assertEquals(Math.sqrt(8),testPoints.distance());
     }
 
     @Test
     public void slope() {
         TwoPoints testPoints = new TwoPoints();
+        testPoints.setPoint(0, 1, 1);
+        testPoints.setPoint(1, 2, 2);
+        Point p1 = testPoints.getPoint(0);
+        Point p2 = testPoints.getPoint(1);
+        assertEquals(1.0,testPoints.slope());
     }
 
 
